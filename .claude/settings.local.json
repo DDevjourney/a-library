@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer require *)",
+      "Bash(php artisan *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/login)",
+      "Bash(echo \"login: $\\(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/login\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/dashboard)",
+      "Bash(echo \"dashboard \\(sin auth\\): $\\(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/dashboard\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/books)",
+      "Bash(php -v)"
+    ]
+  }
+}
