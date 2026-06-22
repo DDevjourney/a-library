@@ -1,0 +1,56 @@
+# Blueprint de Render para A-Library.
+# La base de datos NO se gestiona aquí: es un MySQL externo en Aiven.
+# Las variables con `sync: false` se rellenan a mano en el panel de Render
+# (Environment) o al aplicar el blueprint, para no versionar secretos.
+
+services:
+  - type: web
+    name: a-library
+    runtime: docker
+    plan: free
+    region: frankfurt          # usa la región más cercana a tu servicio de Aiven
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /login
+    autoDeploy: true
+    envVars:
+      # --- Aplicación ---
+      - key: APP_NAME
+        value: A-Library
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false            # php artisan key:generate --show
+      - key: APP_URL
+        sync: false            # https://a-library.onrender.com (tu URL real)
+      - key: LOG_CHANNEL
+        value: stderr          # logs visibles en el panel de Render
+      - key: LOG_LEVEL
+        value: error
+
+      # --- Base de datos (Aiven MySQL) ---
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        sync: false            # mysql-xxxx.aivencloud.com
+      - key: DB_PORT
+        sync: false            # p.ej. 12345
+      - key: DB_DATABASE
+        sync: false            # defaultdb
+      - key: DB_USERNAME
+        sync: false            # avnadmin
+      - key: DB_PASSWORD
+        sync: false
+      - key: MYSQL_ATTR_SSL_CA
+        value: /etc/secrets/aiven-ca.pem   # Secret File con el CA de Aiven
+
+      # --- Drivers (respaldados en la BD) ---
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: SESSION_SECURE_COOKIE
+        value: "true"

@@ -9,7 +9,9 @@
       "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/dashboard)",
       "Bash(echo \"dashboard \\(sin auth\\): $\\(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/dashboard\\)\")",
       "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8001/books)",
-      "Bash(php -v)"
+      "Bash(php -v)",
+      "Bash(ls package-lock.json)",
+      "Bash(ls composer.lock)"
     ]
   }
 }
