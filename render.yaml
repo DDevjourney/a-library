@@ -43,7 +43,7 @@ services:
       - key: DB_PASSWORD
         sync: false
       - key: MYSQL_ATTR_SSL_CA
-        value: /etc/secrets/aiven-ca.pem   # Secret File con el CA de Aiven
+        value: /etc/ssl/aiven/ca.pem       # CA de Aiven incrustado en la imagen
 
       # --- Drivers (respaldados en la BD) ---
       - key: SESSION_DRIVER
