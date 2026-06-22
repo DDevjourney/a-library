@@ -44,4 +44,14 @@
             </x-primary-button>
         </div>
     </form>
+
+    @if (Route::has('register'))
+        <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{{ __('¿Aún no tienes cuenta?') }}</p>
+            <a href="{{ route('register') }}"
+               class="inline-flex w-full items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                {{ __('Crear una cuenta') }}
+            </a>
+        </div>
+    @endif
 </x-guest-layout>
