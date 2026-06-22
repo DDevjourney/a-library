@@ -55,6 +55,10 @@ RUN composer dump-autoload --optimize --no-dev --no-scripts
 # Apache sirve desde /public
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
+# Certificado CA de Aiven (público) incrustado para el SSL de MySQL.
+# Evita tener que configurar un Secret File en Render.
+COPY docker/aiven-ca.pem /etc/ssl/aiven/ca.pem
+
 # Permisos para storage y cache
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
